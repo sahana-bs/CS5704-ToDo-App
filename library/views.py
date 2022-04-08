@@ -1,9 +1,29 @@
 from django.shortcuts import render, redirect
 from .models import TaskList, regular_users, TaskLists, admin_user, completed_tasks, \
-    pending_task
+    pending_task, eventList
 
 
 # Create your views here.
+# function to render to the lists page.
+def task_item_list(request):
+    return render(request,
+                  "library/library_store/list.html",
+                  {"taskList": TaskList})
+
+
+# function to render to the home page.
+def todo_home(request):
+    return render(request,
+                  "library/library_store/home.html",
+                  {"completedtasks": completed_tasks, "pendingtasks": pending_task})
+
+
+# function to render to the login page.
+def todo_login(request):
+    return render(request,
+                  "library/library_store/login.html")
+
+
 
 # function to render to Add an item page.
 def task_item(request):
@@ -40,4 +60,41 @@ def createTaskItem(request):
     return task_item_list(request)
 
 
+# function to render to edit an item page.
+def edit_item(request, taskItem_id):
+    if 'username' in request.session:
+        if request.session['role'] == "admin":
+            for items in TaskList:
+                if items.id == taskItem_id:
+                    break
+            return render(request,
+                          "library/library_store/editItem.html",
+                          {"taskItem": items})
+        else:
+            return render(request,
+                          "library/library_store/home.html",
+                          {"completedtasks": completed_tasks, "pendingtasks": pending_task})
+    else:
+        return render(request,
+                      "library/library_store/home.html",
+                      {"completedtasks": completed_tasks, "pendingtasks": pending_task})
 
+
+# function to display the edited item on the list page of the webapp.
+def edit_task_item(request, taskItem_id):
+    title = request.POST.get("Title")
+    description = request.POST.get("description")
+    assigned_by = request.POST.get("author")
+    assigned_to = request.POST.get("assigned")
+    category = request.POST.get("category")
+    priority = request.POST.get("priority")
+    for i in range(len(TaskList)):
+        if TaskList[i].id == taskItem_id:
+            break
+    TaskList[i].title = title
+    TaskList[i].description = description
+    TaskList[i].assigned_by = assigned_by
+    TaskList[i].assigned_to = assigned_to
+    TaskList[i].category = category
+    TaskList[i].priority = priority
+    return task_item_list(request)

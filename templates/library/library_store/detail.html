@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page-title %} Book List {% endblock %}
+{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/details.css" %}">{% endblock %}
+
+{% block content %}
+    <div class="book_list">
+        <div>
+            <img class="book_img" src="{% static taskItem.img %}" alt="event1" >
+        </div>
+        <div class="book_details">
+            <h2 class="event_title">{{ taskItem.title }}</h2>
+            <p><b>Assigned by : {{ taskItem.assigned_by }}</b></p>
+            <p class="event_desc">{{ taskItem.description }}</p>
+            <span><b>Category : {{ taskItem.category }}</b></span>
+            <p><b>Priority : {{ taskItem.priority }}</b></p>
+            {% if request.session.username %}
+                <span><button type="button">Accept</button> <button type="button">Deny</button></span>
+            {% endif %}
+        </div><!--.book_details--->
+    </div><!-- .book_list -->
+{% endblock %}
+
+{% block reviews %}
+    <div class="container">
+        <h2>Comments</h2>
+        <div>
+            <p class="groove">Task is to create a design document for the Software Engineering course project. The deadline is 8th of April, 2022. The design document needs to contain the design patterns, architecture components and their interactions, literature, constraints and guidelines, and some design sketches. This is an important part of the project and should contain all aspects of the project design. Details about milestones and things to covered in each milestone need to be reported in the design document.
+</p>
+        </div>
+        <div>
+            <p class="groove">"The design document for the software engineering course project has been created successfully. The deadline has been honored. The design document contains the design patterns, architecture components and their interactions, literature, constraints and guidelines, and some design sketches. Some knowledge transfer had to be conducted with the other developer, because of the reduction in team size which led to the pushed milestones. However, all tasks covered in each milestone has been reported in the design document.</p>
+        </div>
+        {% if request.session.username %}
+            <span><button type="button">Write a Comment</button></span>
+        {% endif %}
+    </div><!--container-->
+{% endblock %}
+
+
+
