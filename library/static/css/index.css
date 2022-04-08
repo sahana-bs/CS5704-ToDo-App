@@ -1,0 +1,34 @@
+/*Styling for the contents of the home page*/
+.event_list{
+    display: flex;
+    margin-left: 100px;
+}
+.event_img{
+    float: left;
+    width: 300px;
+    margin: 20px 50px 0 0;
+}
+.event_details{
+    float:left;
+    width:860px;
+    margin: 40px;
+}
+/* Responsive columns */
+@media screen and (max-width: 640px){
+
+    .event_list{
+        margin-left: 25px;
+        flex-direction: column;
+        text-align: justify;
+    }
+    .event_details{
+        width: 300px;
+        margin-left: 10px;
+    }
+    .event_img{
+        width: 325px;
+    }
+}
+
+
+

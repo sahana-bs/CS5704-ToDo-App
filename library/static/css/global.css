@@ -1,0 +1,148 @@
+/*Styling done for header and footer for all the pages*/
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    outline: transparent;
+}
+/*Styling the nav bar*/
+.nav {
+    background: transparent;
+    color: white;
+    text-decoration: none;
+}
+.nav:hover, .nav:focus{
+    text-decoration: underline;
+}
+.nav.select {
+    text-decoration: underline;
+    color:black;
+    text-decoration-color: white;
+    font-weight: 800;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid cornflowerblue;
+}
+
+.header .logo_header{
+    display: flex;
+}
+
+#siteName{
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    font-size: 2.5rem;
+    color: #881e42;
+}
+#logo{
+    height: 95px;
+}
+.icon_header {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+#search-bar{
+    display: flex;
+    margin-right: 20px;
+}
+#search{
+    width: 400px;
+    height: 30px;
+    border-radius: 25px;
+    padding: 0 10px;
+    margin-right: 10px;
+    border: 1px solid #cccccc;
+    outline: transparent;
+}
+
+.img-icon {
+    margin-right: 10px;
+}
+/*Styling the navigation bar*/
+.link_header{
+    background-color: #881e42;
+    border-bottom: 1px solid rgb(31, 41, 55);
+    padding: 10px 20px;
+    display: flex;
+}
+.link_header a{
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    margin-right: 20px;
+}
+.link_header a:hover, .link_header a:focus{
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+.link_header a.selected{
+      text-decoration: underline;
+      color:black;
+      text-decoration-color: black;
+     font-weight: 800;
+ }
+/*Styling the footer*/
+.footer{
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-info{
+    margin-top: 7px;
+    font-size: large;
+}
+.footer-social{
+    font-size: large;
+}
+/* Responsive columns */
+@media screen and (max-width: 1040px){
+
+    .header{
+        flex-direction:column;
+    }
+
+    .header .logo_header{
+        justify-content: center;
+    }
+
+    #search{
+        width: 220px;
+        margin-right: 20px;
+    }
+
+    .search-bar-form{
+        margin-left: 10px;
+    }
+    .search-bar-form{
+        display: flex;
+    }
+    #siteName{
+        font-size: 2rem;
+    }
+
+    #logo{
+        height: 60px;
+    }
+
+    .icon_header{
+        margin: 20px 0 10px 0;
+        justify-content: center;
+    }
+    .icon_header img {
+        height: 30px;
+    }
+    .link_header{
+        justify-content: space-evenly;
+    }
+    .footer{
+        flex-direction:column;
+    }
+}

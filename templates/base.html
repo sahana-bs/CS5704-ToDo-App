@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>TODO | {% block page-title %}{% endblock %}</title>
+{#    <script src="{% static "js/jquery-3.6.0.min.js" %}"></script>#}
+{#    <script src="{% static "js/scripts.js" %}"></script>#}
+    <link  rel="stylesheet" type="text/css" href="{% static "css/global.css" %}">
+    <link  rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+    {% block link-css %}{% endblock %}
+</head>
+<body>
+
+<!-- The images that are used under the class="book_img" has been taken from : https://www.google.com/imghp?hl=en-->
+<!-- The images used for the icons has been taken from : https://www.flaticon.com/-->
+
+<div class="header">
+    <div class="logo_header">
+        <img src="{% static "img/Vertical_VT_Full_Color_RGB.jpg" %}" alt="logo" height="95">
+        <h1 id="siteName">TODO</h1>
+    </div><!--.logo_header-->
+
+    <div class="icon_header">
+        <div id="search-bar">
+            <form class="search-bar-form" action="" method="get">
+                <input type="text" name="search-result" placeholder="Search.." id="search">
+                <input type="submit" name="submit" value="Go">
+            </form>
+        </div><!search-bar-->
+        {% if request.session.username %}
+            <a href=""><img class="img-icon" src="{% static "img/shopping-cart.png" %}" alt="cart" height="30"></a>
+            <a href=""><img class="img-icon" src="{% static "img/wishlist.png" %}" alt="wishlist" height="30"></a>
+        {% endif %}
+
+        {% if request.session.username %}
+            <p class="img-icon">Logged in {{ request.session.username }}</p>
+            <p class="img-icon"><a href="{% url 'library:logout' %}">Logout</a> </p>
+        {% else %}
+            <p class="img-icon"><a href="{% url 'library:loginPage' %}">Login</a> </p>
+            <p class="img-icon"><a href="">SignUp</a> </p>
+        {% endif %}
+    </div><!--.icon_header-->
+</div><!--.header-->
+
+<div class="link_header">
+    <a class="nav selected" href="{% url 'library:home' %}">Home</a>
+    <a class="nav" href="{% url 'library:task-list' %}">Tasks</a>
+{#    <a class="nav" href="{% url 'library:store-events' %}">Events</a>#}
+    <a class="nav" href="">Help</a>
+</div><!--.link_header: This is the navigation bar-->
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div><!--.content_book-->
+<div class="reviews">
+    {% block reviews %}{% endblock %}
+</div><!--reviews-->
+
+<div class="footer">
+    <div class="footer-info">
+        <a id="about" href="">About US</a> <b>|</b>
+        <a href="">Contact US</a>
+    </div><!--.footer-info-->
+    <div class="footer-social">
+        <a id="connect" href="">Connect with us</a>
+        <a href=""><img src="{% static "img/facebook%20(1).png" %}" alt="facebook" height="20"></a>
+        <a href=""><img src="{% static "img/twitter.png" %}" alt="twitter" height="20"></a>
+        <a href=""><img src="{% static "img/instagram.png" %}" alt="insta" height="20"></a>
+        <a href=""><img src="{% static "img/linkedin.png" %}" alt="linkedin" height="20"></a>
+    </div><!--.footer-social-->
+</div><!--.footer-->
+
+</body>
+</html>
+
+

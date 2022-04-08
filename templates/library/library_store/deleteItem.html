@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page-title %} Book List {% endblock %}
+{% block link-css %}
+    <link  rel="stylesheet" type="text/css" href="{% static "css/add.css" %}">
+{% endblock %}
+
+
+{% block content %}
+    <form  class="form-center" id="review-form" action="{% url "library:delete_task_item" taskItem.id %}" method="post">
+    {% csrf_token %}
+        <div class="container-form">
+            <div class="row">
+                <div class="col-25">
+                  <label for="review">Are you sure you want to delete {{ taskItem.title }} :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="text" id="confirm" name="confirm" placeholder="Type yes or no..." >
+                </div><!--col-75-->
+            </div><!--row-->
+
+        </div><!--container-form-->
+        <div class="row">
+            <div class="col-75">
+                <button type="submit" class="button-add delete" onclick="window.location.href = '{% url 'library:delete_task_item' taskItem.id %}';">Confirm</button>
+            </div><!--col-75-->
+        </div><!--row-->
+    </form>
+
+{% endblock %}

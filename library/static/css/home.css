@@ -1,0 +1,160 @@
+
+/*
+Setting up view properties for the content of the home page
+*/
+
+
+/*styling the brand introduction */
+.brand-introduction{
+    margin:20px;
+}
+
+/*styling the brand introduction heading*/
+.brand-introduction h2{
+    text-align: center;
+    font-size: x-large;
+    color: #861f41;
+}
+
+/*styling the brand introduction line*/
+.brand-introduction p{
+    text-align: center;
+    color: #861f41;
+}
+
+/*
+setting up the welcome image tag in the home page
+*/
+.slideshow-container img{
+   width: 100%;
+}
+
+.dashboard-view{
+    display: flex;
+    overflow-y: auto;
+}
+
+.dashboard_item{
+    margin-top:20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.dashboard_item img{
+    margin: 3px 8px;
+    height: 190px;
+    width: 190px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.home-page-heading h2{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+   color: #861f41;
+   font-size: 1.8rem;
+}
+
+/*
+Customizing item listing heading view
+*/
+.home-page-heading h3{
+   margin: 20px;
+   color: #861f41;
+   font-size: 1.2rem;
+}
+
+.user-dashboard{
+    border-bottom: 1px solid rgb(31, 41, 55);
+}
+
+/*
+Customizing item display on home page
+*/
+
+.item-display{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   margin-bottom: 30px;
+}
+
+.item-display div {
+   justify-self: center;
+}
+
+/*
+Customizing individual item presentation inside the item display container
+*/
+
+.item-product {
+   justify-content: center;
+   width: 300px;
+   height: 300px;
+   object-fit: fill;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+}
+/*
+Setting up the item name for the product in alignment with image
+*/
+.item-caption{
+   padding:5px 0;
+   text-align: center;
+}
+
+
+/*
+media query for max-width upto 1200px
+*/
+@media screen and (max-width: 1200px){
+
+      /*
+       overwriting item display container settings defined above
+       */
+
+   .item-display{
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 5px;
+   }
+
+   /*
+   overwriting individual item display within container settings defined above
+   */
+
+    .item-product {
+      height: 80%;
+      width: 100%;
+   }
+}
+
+/*
+media query for max-width upto 768px for mobile view
+*/
+@media screen and (max-width: 768px){
+
+   /*
+    overwriting item display container settings defined above
+    */
+
+   .item-display{
+      grid-template-columns: 1fr 1fr;
+       grid-gap: 10px;
+   }
+
+   /*
+   overwriting individual item display within container settings defined above
+   */
+   .item-product {
+      height: 90%;
+      width: 100%;
+   }
+
+   /*
+   overwriting item listing heading view
+   */
+   .new-listings h2{
+      font-size: 1.5rem;
+   }
+}
