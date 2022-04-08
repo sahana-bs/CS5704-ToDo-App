@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page-title %} Book List {% endblock %}
+{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/list.css" %}">{% endblock %}
+
+{% block content %}
+    <div class="row" id="books">
+        {% for list in taskList %}
+                <div class="column">
+                    <div class="card">
+                        <img class="book_img" src="{% static list.img %}" alt="book1"><h2><a href="{% url "library:task-detail" list.id %}">{{ list.title }}</a></h2>
+                        <p><b>Assigned by : {{ list.assigned_by }}</b></p>
+                        <p><b>Assigned to : {{ list.assigned_to }}</b></p>
+                        <span><b>Category : {{ list.category }}</b></span>
+                        <p><b>Priority : {{ list.priority }}</b></p>
+                        {% if request.session.username %}
+{#                            {% if request.session.role == "admin" %}#}
+                                <a href="{% url "library:editTaskItem" list.id %}"><img class="icon" src="{% static "img/editing.png" %}" alt="icon"></a>
+                                <a href="{% url "library:delete_item" list.id %}"><img class="icon" src="{% static "img/bin.png" %}" alt="icon"></a>
+{#                            {% endif %}#}
+                        {% endif %}
+                    </div><!-- card -->
+                </div><!-- column -->
+        {% endfor %}
+    </div><!--.books-->
+{% endblock %}

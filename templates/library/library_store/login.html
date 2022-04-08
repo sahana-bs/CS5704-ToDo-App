@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page-title %} Login {% endblock %}
+{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/add.css" %}">{% endblock %}
+
+{% block content %}
+    <form class="form-center" id="review-form" method="post" action="{% url "library:login" %}">
+        {% csrf_token %}
+        <div class="container-form">
+            <div class="row">
+                <div class="col-25">
+                  <label for="review">UserName :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="text" id="username" name="username" placeholder="Username">
+                </div><!--col-75-->
+            </div><!--row-->
+            <div class="row">
+                <div class="col-25">
+                  <label for="review">Password :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="password" id="password" name="password" placeholder="Password">
+                </div><!--col-75-->
+            </div><!--row-->
+        </div><!-- container-form-->
+        <div class="row">
+            <div class="col-25">
+                <button type="submit" class="button-add add-review">Log In</button>
+            </div><!--col-25-->
+        </div><!--row-->
+    </form>
+{% endblock %}

@@ -24,6 +24,38 @@ def todo_login(request):
                   "library/library_store/login.html")
 
 
+# function to render to the details page of the selected book item.
+def task_item_detail(request, taskItem_id):
+    for items in TaskList:
+        if items.id == taskItem_id:
+            break
+    return render(request,
+                  "library/library_store/detail.html",
+                  {"taskItem": items})
+
+
+# function to perform login operations based on two user types admin and regular users
+def login(request):
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    if username == regular_users["username"] and password == regular_users["password"]:
+        request.session['username'] = username
+        request.session['role'] = 'regular'
+        return redirect("library:home")
+    elif username == admin_user["username"] and password == admin_user["password"]:
+        request.session['username'] = username
+        request.session['role'] = 'admin'
+        return redirect("library:home")
+    else:
+        return redirect("library:home")
+
+
+# function to logout from the webapp.
+def logout(request):
+    del request.session['username']
+    del request.session['role']
+    return redirect('library:home')
+
 
 # function to render to Add an item page.
 def task_item(request):
@@ -97,4 +129,36 @@ def edit_task_item(request, taskItem_id):
     TaskList[i].assigned_to = assigned_to
     TaskList[i].category = category
     TaskList[i].priority = priority
+    return task_item_list(request)
+
+
+# function to render to delete an item page.
+def delete_item(request, taskItem_id):
+    if 'username' in request.session:
+        if request.session['role'] == "admin":
+            for items in TaskList:
+                if items.id == taskItem_id:
+                    break
+            return render(request,
+                          "library/library_store/deleteItem.html",
+                          {"taskItem": items})
+        else:
+            return render(request,
+                          "library/library_store/home.html",
+                          {"completedtasks": completed_tasks, "pendingtasks": pending_task})
+    else:
+        return render(request,
+                      "library/library_store/home.html",
+                      {"completedtasks": completed_tasks, "pendingtasks": pending_task})
+
+
+# function to perform delete operation on the specified item.
+def delete_task_item(request, taskItem_id):
+    confirm = request.POST.get("confirm")
+    if confirm == "yes":
+        for i in range(len(TaskList)):
+            if TaskList[i].id == taskItem_id:
+                break
+        del TaskList[i]
+
     return task_item_list(request)
