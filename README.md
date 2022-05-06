@@ -57,10 +57,10 @@ python manage.py test
 * Navigate to the create page by clicking on the "new task" option in the navigation bar.
 ![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.23.21%20AM.jpeg)
 
-#This redirects you to task detail page when you can see the details of the task.
+* This redirects you to task detail page when you can see the details of the task.
 ![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.23.43%20AM%20(1).jpeg)
 
-#The new task is reflected in the dashboard (pending task section).
+* The new task is reflected in the dashboard (pending task section).
 ![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.24.59%20AM.jpeg)
 
 
