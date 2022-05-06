@@ -53,7 +53,17 @@ python manage.py test
 ```
 
 ## Instructions to run a use case
+* To create a task
+* Navigate to the create page by clicking on the "new task" option in the navigation bar.
 ![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.23.21%20AM.jpeg)
+
+#This redirects you to task detail page when you can see the details of the task.
 ![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.23.43%20AM%20(1).jpeg)
+
+#The new task is reflected in the dashboard (pending task section).
 ![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.24.59%20AM.jpeg)
+
+
+## Task management tool
+For this project, we have used trello as a task management tool. Here's a ![sneak peek](https://drive.google.com/file/d/1w7m_dYwMXqAArlzDsch0Hv3BhoDLRBic/view?usp=sharing) to one of our task boards.
 
