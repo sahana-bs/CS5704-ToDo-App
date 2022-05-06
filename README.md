@@ -9,8 +9,47 @@ The Todo app will help software engineers organize their thoughts by prioritizin
 * [Ashish Bhat](https://github.com/ashishbhat21)
 * [Sahana Basapathi](https://github.com/sahana-bs)
 
+## To run the project following dependencies should be installed.
+```
+1: pip3 install pipenv
+```
+```
+1: pipenv install django==3.2.8
+```
+```
+1: pipenv install psycopg2==2.9.1
+```
+```
+1: pipenv install dj-database-url==0.5.0
+```
+```
+1: pipenv install sqlparse==0.4.2
+```
+```
+1: pipenv install whitenoise==5.3.0
+```
+```
+1: pipenv install pytz==2021.3
+```
+```
+1: pipenv install gunicorn==20.1.0
+```
 ## Instructions to run the app
+### The backend server will run on: http://127.0.0.1:8000
+```
+python manage.py runserver
+```
+### To sync the database with the current state of any database models run the following commands:
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
 
 ## Instructions to run the tests
+```
+python manage.py test
+```
 
 ## Instructions to run a use case
