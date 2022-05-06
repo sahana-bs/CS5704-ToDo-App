@@ -40,7 +40,7 @@
     display: table;
     clear: both;
   }
-  
+
   /* Responsive columns */
   @media all and (max-width: 982px) {
     .column {

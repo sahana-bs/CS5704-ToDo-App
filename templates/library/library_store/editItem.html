@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "library/base.html" %}
 {% load static %}
 {% block page-title %} Book List {% endblock %}
 {% block link-css %}
@@ -56,6 +56,14 @@
                 </div><!--col-25-->
                 <div class="col-75">
                     <input class="review-info" type="text" id="priority" name="priority" placeholder="Select priority" value="{{ taskItem.priority }}">
+                </div><!--col-75-->
+            </div><!--row-->
+            <div class="row">
+                <div class="col-25">
+                  <label for="rating">Due Date:</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                    <input class="review-info" type="date" id="dueDate" name="dueDate" value="2022-05-06" min="2022-05-01" max="2030-12-31">
                 </div><!--col-75-->
             </div><!--row-->
 

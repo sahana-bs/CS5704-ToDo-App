@@ -11,15 +11,16 @@ html, body{
     background: transparent;
     color: white;
     text-decoration: none;
+    font-weight: 800;
 }
 .nav:hover, .nav:focus{
     text-decoration: underline;
 }
 .nav.select {
-    text-decoration: underline;
-    color:black;
+    /*text-decoration: underline;*/
+    color:white;
     text-decoration-color: white;
-    font-weight: 800;
+
 }
 .header{
     display: flex;
@@ -37,7 +38,7 @@ html, body{
     margin-left: 10px;
     align-items: center;
     font-size: 2.5rem;
-    color: #881e42;
+    color: #008080;
 }
 #logo{
     height: 95px;
@@ -66,7 +67,7 @@ html, body{
 }
 /*Styling the navigation bar*/
 .link_header{
-    background-color: #881e42;
+    background-color: #008080;
     border-bottom: 1px solid rgb(31, 41, 55);
     padding: 10px 20px;
     display: flex;
@@ -83,8 +84,8 @@ html, body{
 }
 .link_header a.selected{
       text-decoration: underline;
-      color:black;
-      text-decoration-color: black;
+      color:white;
+      text-decoration-color: white;
      font-weight: 800;
  }
 /*Styling the footer*/
@@ -102,6 +103,32 @@ html, body{
 .footer-social{
     font-size: large;
 }
+
+ul.messages {
+      font-weight: bold;
+      padding: 1em;
+      margin: 0;
+      list-style: none;
+  }
+
+  ul.messages li.success {
+      background-color: lightgreen;
+      padding: 1em;
+      margin: 0.25em;
+  }
+
+   ul.messages li.info {
+      background-color: lightblue;
+      padding: 1em;
+      margin: 0.25em;
+  }
+
+    ul.messages li.warning {
+      background-color: pink;
+      padding: 1em;
+      margin: 0.25em;
+  }
+
 /* Responsive columns */
 @media screen and (max-width: 1040px){
 

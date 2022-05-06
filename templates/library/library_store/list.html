@@ -1,26 +1,30 @@
-{% extends "base.html" %}
+{% extends "library/base.html" %}
 {% load static %}
 {% block page-title %} Book List {% endblock %}
-{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/list.css" %}">{% endblock %}
+{% block link-css %}
+    <link  rel="stylesheet" type="text/css" href="{% static "css/list.css" %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% endblock %}
 
 {% block content %}
-    <div class="row" id="books">
-        {% for list in taskList %}
-                <div class="column">
-                    <div class="card">
-                        <img class="book_img" src="{% static list.img %}" alt="book1"><h2><a href="{% url "library:task-detail" list.id %}">{{ list.title }}</a></h2>
-                        <p><b>Assigned by : {{ list.assigned_by }}</b></p>
-                        <p><b>Assigned to : {{ list.assigned_to }}</b></p>
-                        <span><b>Category : {{ list.category }}</b></span>
-                        <p><b>Priority : {{ list.priority }}</b></p>
-                        {% if request.session.username %}
-{#                            {% if request.session.role == "admin" %}#}
-                                <a href="{% url "library:editTaskItem" list.id %}"><img class="icon" src="{% static "img/editing.png" %}" alt="icon"></a>
-                                <a href="{% url "library:delete_item" list.id %}"><img class="icon" src="{% static "img/bin.png" %}" alt="icon"></a>
-{#                            {% endif %}#}
-                        {% endif %}
-                    </div><!-- card -->
-                </div><!-- column -->
-        {% endfor %}
-    </div><!--.books-->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if taskList %}
+{#            <button type="submit" class="button" onclick="window.location.href = '{% url 'library:sorted' %}';">Sort by Price</button>#}
+            {% for list in taskList %}
+                <div class="col">
+                    <div class="card h-100" style="width: 22rem">
+                        <img src="{% static "img/sunn.jpg" %}" class="card-img-top" class="img-thumbnail" alt="...">
+                        <div class="card-body">
+                            <h6 class="card-title"><a href="{% url "library:task-detail" list.id %}">{{ list.title }}</a></h6>
+                          <p class="card-text">{{ list.description }}</p>
+                            <a href="{% url "library:editTaskItem" list.id %}"><img class="icon" src="{% static "img/editing.png" %}" alt="icon"></a>
+                            <a href="{% url "library:delete_item" list.id %}"><img class="icon" src="{% static "img/bin.png" %}" alt="icon"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>There is no item in the database.</h2>
+        {% endif %}
+    </div>
 {% endblock %}

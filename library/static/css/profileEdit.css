@@ -1,0 +1,78 @@
+.form-edit-profile{
+    margin: 50px auto;
+    position: relative;
+    width:450px;
+    height: 400px;
+    background-color: white;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+/*styling the heading*/
+.form-edit-profile h2{
+    color: #861f41;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
+/*styling the upload item to list class*/
+#editUserToDB{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*styling the inputs for adding item*/
+.user-for-edit{
+    margin:10px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
+}
+.user input{
+    height:20px;
+}
+
+#submitButton{
+    margin: 10px 10px;
+    height: 20px;
+}
+
+#editUserToDB button{
+    margin: 10px 10px;
+    height: 20px;
+}
+
+/*
+media query for mobile view
+*/
+
+@media screen and (max-width:768px) {
+
+    /*overwriting the content class defined above*/
+    .form-edit-profile{
+        margin: 20px auto;
+        width: 300px;
+    }
+
+    /*overwriting the upload item to list class defined above*/
+    #editUserToDB{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-for-edit{
+        font-size: 0.7rem;
+    }
+
+    #submitButton{
+        margin: 10px 10px;
+        height: 30px;
+        width:90px;
+    }
+
+}
+
+
+

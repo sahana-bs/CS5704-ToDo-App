@@ -1,0 +1,109 @@
+/*
+styling view properties for the content of the profile page
+*/
+
+#profile-info{
+    color: #861f41;
+    text-align: center;
+    font-size: 1.8rem;
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
+.profile-and-actions{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+.user-detail{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.edit-button img{
+    width: 25px;
+    height: 25px;
+    float: right;
+    margin-right: calc(2*20px);
+}
+
+.user-detail .field{
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-bottom:10px;
+}
+
+.user-detail .field-value{
+    font-size: 1.2rem;
+    padding-left:10px;
+    padding-bottom:10px;
+}
+
+/*
+styling the top content class view
+*/
+.profile-content {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+/*
+styling to display pictures for items
+*/
+.picture-container-element{
+    margin-right: calc(4*20px);
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+/*media query for max-width upto 1200px*/
+@media screen and (max-width: 1200px){
+
+    /*overwriting the top content class*/
+    .top-content{
+        padding: 20px;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    /*overwriting the top picture container class*/
+    .picture-container{
+        display: flex;
+        overflow-y: auto;
+    }
+
+     /*overwriting the top product comment related classes*/
+    .user-comment textarea, .product-comment h3{
+        margin-left: 20px;
+    }
+
+    .product-recommendation{
+        padding-left: 20px;
+    }
+}
+
+/*
+media query for max-width upto 768px
+*/
+@media screen and (max-width: 768px){
+
+    /*overwriting the top content class*/
+    .picture-container{
+        display: flex;
+        overflow-y: auto;
+    }
+
+    /*overwriting the top product comment related classes*/
+     .user-comment textarea{
+         height:100px;
+         width:100%;
+    }
+}

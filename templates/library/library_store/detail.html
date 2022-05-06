@@ -1,12 +1,14 @@
-{% extends "base.html" %}
+{% extends "library/base.html" %}
 {% load static %}
+{% load humanize %}
 {% block page-title %} Book List {% endblock %}
+{#{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/details.css" %}">{% endblock %}#}
 {% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/details.css" %}">{% endblock %}
 
 {% block content %}
     <div class="book_list">
         <div>
-            <img class="book_img" src="{% static taskItem.img %}" alt="event1" >
+            <img class="book_img" src="{% static "img/sunn.jpg" %}" alt="task1" >
         </div>
         <div class="book_details">
             <h2 class="event_title">{{ taskItem.title }}</h2>
@@ -14,28 +16,57 @@
             <p class="event_desc">{{ taskItem.description }}</p>
             <span><b>Category : {{ taskItem.category }}</b></span>
             <p><b>Priority : {{ taskItem.priority }}</b></p>
-            {% if request.session.username %}
-                <span><button type="button">Accept</button> <button type="button">Deny</button></span>
+            {% if taskItem.completed %}
+                <p><b>Status : Completed</b></p>
+            {% else %}
+                <p><b>Status : Pending</b></p>
+                {% if request.session.username %}
+                <span><button type="button" onclick="window.location.href = '{% url 'library:complete_task' taskItem.id %}';">Complete</button></span>
+                {% endif %}
             {% endif %}
+            <p><span>
+                {% if request.session.username %}
+                        <a href="{% url "library:editTaskItem" taskItem.id %}"><img height="15" class="icon" src="{% static "img/editing.png" %}" alt="icon"></a>
+                     <a href="{% url "library:delete_item" taskItem.id %}"><img height="15" class="icon" src="{% static "img/bin.png" %}" alt="icon"></a>
+                {% endif %}
+                <em>Due Date :</em> <i>{{ taskItem.due_date }}</i>
+                <em>Assigned by :</em> <a href="{% url "users:profile" taskItem.user.username %}"><i>{{ taskItem.user.username }}</i></a>
+            </span></p>
         </div><!--.book_details--->
     </div><!-- .book_list -->
+
+
 {% endblock %}
 
 {% block reviews %}
     <div class="container">
-        <h2>Comments</h2>
-        <div>
-            <p class="groove">Task is to create a design document for the Software Engineering course project. The deadline is 8th of April, 2022. The design document needs to contain the design patterns, architecture components and their interactions, literature, constraints and guidelines, and some design sketches. This is an important part of the project and should contain all aspects of the project design. Details about milestones and things to covered in each milestone need to be reported in the design document.
-</p>
+    <h2>Comments</h2>
+    <a href="#">
+        <input data-user-name="{{ request.session.username }}" data-item-id="{{ taskItem.id }}" data-ajax-url="{% url "library:view-review" taskItem.id  %}" class="view-review" type="submit" value="View Comments">
+    </a>
+
+        <div class = "user-commented">
+                <div class="comments-recorded">
+                </div>
         </div>
-        <div>
-            <p class="groove">"The design document for the software engineering course project has been created successfully. The deadline has been honored. The design document contains the design patterns, architecture components and their interactions, literature, constraints and guidelines, and some design sketches. Some knowledge transfer had to be conducted with the other developer, because of the reduction in team size which led to the pushed milestones. However, all tasks covered in each milestone has been reported in the design document.</p>
-        </div>
+
         {% if request.session.username %}
-            <span><button type="button">Write a Comment</button></span>
+            <form id="prod-user-comment" action="{% url "library:new-review" taskItem.id %}" method="post">
+                    {% csrf_token %}
+
+                    <!--New comment that is un-submitted-->
+                    <div class="user-comments">
+                        <input required type="text" placeholder="Users Comment" name = "user_new_comment" id="createUserComment">
+                    </div>
+
+                    <div>
+                        <!--Add Item page-->
+                        <input data-item-id="{{ taskItem.id }}" data-ajax-url2="{% url "library:edit-comment" %}" data-ajax-url="{% url "library:new-review" taskItem.id  %}" class="submit-button" type="submit" value="Write a Review">
+                    </div>
+                </form>
         {% endif %}
     </div><!--container-->
-{% endblock %}
+ {% endblock %}
 
 
 

@@ -1,12 +1,13 @@
-{% extends "base.html" %}
+{% extends "library/base.html" %}
 {% load static %}
 {% block page-title %} Login {% endblock %}
 {% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/add.css" %}">{% endblock %}
 
 {% block content %}
-    <form class="form-center" id="review-form" method="post" action="{% url "library:login" %}">
+    <form class="form-center" id="review-form" method="post" action="{% url "users:login" %}">
         {% csrf_token %}
         <div class="container-form">
+            <h2>Log In Here..</h2>
             <div class="row">
                 <div class="col-25">
                   <label for="review">UserName :</label>
@@ -29,5 +30,13 @@
                 <button type="submit" class="button-add add-review">Log In</button>
             </div><!--col-25-->
         </div><!--row-->
+{#            {% if messages %}#}
+{#                <ul class="messages">#}
+{#                    {% for message in messages %}#}
+{#                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#                    {% endfor %}#}
+{#                </ul>#}
+{#            {% endif %}#}
+
     </form>
 {% endblock %}

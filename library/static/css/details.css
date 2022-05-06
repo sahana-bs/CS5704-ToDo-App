@@ -25,7 +25,7 @@
 .container{
     width: 1050px;
     margin-right: 50px;
-    display: grid;
+    /*display: grid;*/
 }
 .groove{
     border-style: groove;
@@ -39,6 +39,18 @@
 .advertise img{
     width: 300px;
 }
+.user-comments input{
+    background-color:#fdfdfd;
+    border-radius: 5px;
+    margin-left: 0px;
+    width:99%;
+    height: 70px;
+    margin-top: 15px
+}
+.submit-button{
+    margin-top: 15px
+}
+
  body {
     font-family: Arial, Helvetica, sans-serif;
   }

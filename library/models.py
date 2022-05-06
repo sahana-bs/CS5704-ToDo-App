@@ -1,103 +1,51 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
-class TaskLists:
-    def __init__(self, id, img, title, assigned_by, assigned_to, category, priority, description):
-        self.id = id
-        self.img = img
-        self.title = title
-        self.assigned_by = assigned_by
-        self.assigned_to = assigned_to
-        self.category = category
-        self.priority = priority
-        self.description = description
+
+class TaskLists(models.Model):
+    title = models.CharField(max_length=200)
+    assigned_by = models.CharField(max_length=200)
+    assigned_to = models.CharField(max_length=200)
+    category = models.CharField(max_length=200)
+    priority = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    completed = models.BooleanField(default=False)
+    pending = models.BooleanField(default=True)
+    due_date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('library:task-detail', args=[self.id])
+
+#
+# class EventList(models.Model):
+#     img = models.CharField(max_length=200)
+#     title = models.CharField(max_length=200)
+#     description = models.TextField(blank=True)
+#     date_started = models.DateTimeField(auto_now_add=True)
+#     location = models.CharField(max_length=200)
+#     registered = models.BooleanField(default=False)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-taskItem1 = TaskLists(
-    1,
-    "img/event1.jpg",
-    "Design Document",
-    "Chris Brown",
-    "Disha Bhan",
-    "SE Project",
-    "High",
-    "To add the constraints of the design arch in the design doc."
-)
+class Reviews(models.Model):
+    review = models.TextField(blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    task = models.ForeignKey(TaskLists, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
 
-taskItem2 = TaskLists(
-    2,
-    "img/event2.jpg",
-    "Design Document",
-    "Chris Brown",
-    "Disha Bhan",
-    "SE Project",
-    "High",
-    "To add the constraints of the design arch in the design doc."
-)
+    def __str__(self):
+        return self.review[:20]
 
-taskItem3 = TaskLists(
-    3,
-    "img/event3.jpg",
-    "Design Document",
-    "Chris Brown",
-    "Disha Bhan",
-    "SE Project",
-    "High",
-    "To add the constraints of the design arch in the design doc."
-)
+    def get_absolute_url(self):
+        return reverse('library:task-detail', args=[self.task_id])
 
-taskItem4 = TaskLists(
-    4,
-    "img/event4.jpg",
-    "Design Document",
-    "Chris Brown",
-    "Disha Bhan",
-    "SE Project",
-    "High",
-    "To add the constraints of the design arch in the design doc."
-)
 
-taskItem5 = TaskLists(
-    5,
-    "img/event5.jpg",
-    "Design Document",
-    "Chris Brown",
-    "Disha Bhan",
-    "SE Project",
-    "High",
-    "To add the constraints of the design arch in the design doc."
-)
-taskItem6 = TaskLists(
-    6,
-    "img/event6.jpg",
-    "Design Document",
-    "Chris Brown",
-    "Disha Bhan",
-    "SE Project",
-    "High",
-    "To add the constraints of the design arch in the design doc."
-)
-
-TaskList = []
-TaskList.append(taskItem1)
-TaskList.append(taskItem2)
-TaskList.append(taskItem3)
-TaskList.append(taskItem4)
-TaskList.append(taskItem5)
-TaskList.append(taskItem6)
-
-completed_tasks = []
-completed_tasks.append(taskItem1)
-completed_tasks.append(taskItem2)
-completed_tasks.append(taskItem3)
-completed_tasks.append(taskItem4)
-
-pending_task = []
-pending_task.append(taskItem5)
-pending_task.append(taskItem6)
-
-regular_users = {"username": "chris", "password": "regular"}
-admin_user = {"username": "admin", "password": "admin"}
 
 
