@@ -1,0 +1,70 @@
+{% extends "library/base.html" %}
+{% load static %}
+{% block page-title %} Profile for {{ user.username }} {% endblock %}
+{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/profileEdit.css" %}">{% endblock %}
+
+
+{% block content %}
+    <div class="form-edit-profile">
+
+        <!--Add Item to List Heading-->
+        <h2 id="editProfile"> Edit Profile</h2>
+
+        <!--To create new item in the list-->
+        <form id="editUserToDB" action="{% url "users:profile_edit_detail" user_list.username %}" method="post">
+
+            <div class="user-for-edit">
+                <label><b> First Name </b></label>
+                <input required type="text" placeholder= "First Name" name="firstname" value="{{ user_list.first_name }}">
+            </div>
+
+            <div class="user-for-edit">
+                <label><b> Last Name </b></label>
+                <input required type="text" placeholder= "Last Name" name="lastname" value="{{ user_list.last_name }}">
+            </div>
+
+            <div class="user-for-edit">
+                 <label><b> Email </b> </label>
+                <input required type="email" placeholder="email" name="email" value="{{ user_list.email }}">
+            </div>
+
+            <div class="user-for-edit">
+                <label><b>Profile Picture</b></label>
+                <input id="uploadImages" type="file" name = "profile-picture" accept="image/*">
+                <div id="thumbnailPreview"></div>
+            </div>
+
+            {% if request.session.role == 'admin' %}
+                <div class="user-for-edit">
+                     <label><b> Role </b> </label>
+                    <input required type="text" placeholder="role" name="role" value="{{ user_list.details.role }}">
+                </div>
+            {% endif %}
+
+            <div class="user-for-edit">
+                <label><b> Gender </b> </label>
+                <div class="gender-option">
+                    <input id="male-gender"  required type="radio" value="Male" placeholder="Male" name="gender">
+                    <label for="male-gender">Male</label><br>
+                    <input id="female-gender"  required type="radio" value="Female" placeholder="Female" name="gender">
+                    <label for="female-gender">Female</label><br>
+                    <input id="not-share-gender" required type="radio" value="Not Share" placeholder="Not Share" name="gender">
+                    <label for="not-share-gender">Not Share</label>
+                </div>
+
+            </div>
+
+            <!--Product Price-->
+            <div class="user-for-edit" id = "priceValidation">
+                <label><b> Password </b></label>
+                <input type="password" placeholder="password" name="password" value="">
+            </div>
+
+            <!--Add Item page-->
+            <input id="submitButton" type="submit" value="Save">
+
+            {% csrf_token %}
+        </form>
+    </div>
+
+{% endblock %}

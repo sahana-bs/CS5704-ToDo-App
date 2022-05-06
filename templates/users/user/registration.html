@@ -1,0 +1,60 @@
+{% extends "library/base.html" %}
+{% load static %}
+{% block page-title %} Book List {% endblock %}
+{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/add.css" %}">{% endblock %}
+
+
+{% block content %}
+    <form  class="form-center" id="registration-form" action="{% url 'users:signup' %}" method="post">
+    {% csrf_token %}
+        <div class="container-form">
+            <h2>Sign Up Here..</h2>
+            <div class="row">
+                <div class="col-25">
+                  <label for="register-username">First Name :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="text" id="register-firstname" name="firstname" placeholder="Enter Username" required>
+                </div><!--col-75-->
+            </div><!--row-->
+            <div class="row">
+                <div class="col-25">
+                  <label for="register-username">Last Name :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="text" id="register-lastname" name="lastname" placeholder="Enter Username" required>
+                </div><!--col-75-->
+            </div><!--row-->
+            <div class="row">
+                <div class="col-25">
+                  <label for="register-username">Username :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="text" id="register-username" name="username" placeholder="Enter Username" required>
+                </div><!--col-75-->
+            </div><!--row-->
+            <div class="row">
+                <div class="col-25">
+                  <label for="register-email">Email :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="email" id="register-email" name="email" placeholder=" Enter Email Address" value="" required>
+                </div><!--col-75-->
+            </div><!--row-->
+            <div class="row">
+                <div class="col-25">
+                  <label for="register-password">Password :</label>
+                </div><!--col-25-->
+                <div class="col-75">
+                  <input class="review-info" type="password" id="register-password" name="password" placeholder="Enter Password" value="" required>
+                </div><!--col-75-->
+            </div><!--row-->
+        </div><!--container-form-->
+        <div class="row">
+            <div class="col-25">
+                <button type="submit" class="button-add add-review">Create Account</button>
+            </div><!--col-25-->
+        </div><!--row-->
+    </form>
+
+{% endblock %}

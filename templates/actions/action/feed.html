@@ -1,0 +1,15 @@
+{% load humanize %}
+<ul>
+    {% for action in actions %}
+        {% if action.target != None or "deleted" in action.verb%}
+            <li><a href="{% url 'users:profile' action.user.username%}">{{ action.user.username }}</a> {{ action.verb }}
+                {% if action.target != None %}
+                    "<a href="{{ action.target.get_absolute_url }}">{{ action.target }}</a>"
+                {% endif %}
+                ({{ action.created|naturaltime }})</li>
+        {% endif %}
+
+    {% empty %}
+    <li>No activity yet.</li>
+    {% endfor %}
+</ul>

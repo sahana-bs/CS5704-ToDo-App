@@ -1,0 +1,72 @@
+{% extends "library/base.html" %}
+{% load static %}
+{% block page-title %} Profile for {{ user.username }} {% endblock %}
+{% block link-css %}<link  rel="stylesheet" type="text/css" href="{% static "css/profile.css" %}">{% endblock %}
+
+
+{% block content %}
+{#    <h2> Profile for {{ user.username }}</h2>#}
+{#    <dl>#}
+{#        <dt>Username</dt>#}
+{#        <dd>{{ user.username }}</dd>#}
+{#        <dt>Email Address</dt>#}
+{#        <dd>{{ user.email }}</dd>#}
+{#        <dt>Role</dt>#}
+{#        <dd>{{ user.userprofiles.role }}</dd>#}
+{#    </dl>#}
+    <div class="top-content">
+
+        <h2 id="profile-info">Profile Information </h2>
+
+        {% if request.session.username == user.username or request.session.role == 'admin' %}
+            <a href="{% url "users:profile_edit" user.username %}" class="edit-button"><img src="{% static "img/editing.png" %}"></a>
+        {% endif %}
+
+        <div class="profile-and-actions">
+            <div class="profile-content">
+                <!--This class is to display the multiple images of the item-->
+                <div class="picture-container">
+                    <img src= {% static user.userprofiles.profile_pic %} alt="img1" class="picture-container-element" />
+                </div>
+
+                <!--This class is to display the item description-->
+                <div class="user-description">
+
+                    <!--Profile, details, and seller information-->
+                    <div class="user-detail">
+                        <p class="field"> First Name: </p>
+                        <p class="field-value">{{ user.first_name }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Last Name: </p>
+                        <p class="field-value">{{ user.last_name }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Username: </p>
+                        <p class="field-value">{{ user.username }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Role: </p>
+                        <p class="field-value">{{ user.userprofiles.role }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Gender: </p>
+                        <p class="field-value">{{ user.userprofiles.gender }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Email Address: </p>
+                        <p class="field-value">{{ user.email }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% if request.session.username %}
+        <h1>Recent Activities</h1>
+        {% block sidebar %}
+                {% include "actions/action/feed.html" %}
+        {% endblock %}
+    {% endif %}
+    </div>
+
+
+{% endblock %}
