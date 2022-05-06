@@ -54,3 +54,6 @@ python manage.py test
 
 ## Instructions to run a use case
 ![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.23.21%20AM.jpeg)
+![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.23.43%20AM%20(1).jpeg)
+![Create Task](images/WhatsApp%20Image%202022-05-06%20at%2010.24.59%20AM.jpeg)
+
