@@ -65,5 +65,5 @@ python manage.py test
 
 
 ## Task management tool
-For this project, we have used trello as a task management tool. Here's a ![sneak peek](https://drive.google.com/file/d/1w7m_dYwMXqAArlzDsch0Hv3BhoDLRBic/view?usp=sharing) to one of our task boards.
+For this project, we have used trello as a task management tool. Here's a ![sneak peek](images/task_mgmt.png) to one of our task boards.
 
